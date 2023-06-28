@@ -1,0 +1,49 @@
+.root {
+  --menuBorderWidth: 1px;
+  @apply h-[57px] w-fit max-w-[250px];
+  @apply font-favoritStd text-[16px] font-light capitalize;
+}
+.dropdownControl {
+  @apply flex h-full flex-row items-center bg-white/[.08];
+  @apply rounded-[8px] border-solid border-white/[.8];
+  @apply hover:cursor-pointer;
+}
+
+.placeholder {
+  @apply text-white;
+}
+.hidePlaceholder {
+  @apply hidden;
+}
+
+.arrows {
+  @apply border-none;
+  @apply h-[5px] w-[10px];
+  @apply bg-[url('./DownArrowIcon.svg')] bg-center bg-no-repeat;
+  @apply right-[23px] top-[50%] translate-y-[-50%];
+}
+
+.menu {
+  @apply mt-[15px] min-w-[200px] py-4;
+  @apply w-[calc(100%-(--menuBorderWidth*2))] bg-0A0A0A;
+
+  filter: drop-shadow(0px 24px 24px rgba(10, 10, 10, 0.38));
+  @apply backdrop-blur-[32px];
+  @apply rounded-[8px];
+  @apply border-none;
+
+  & :global(.Dropdown-option) {
+    @apply text-white/[.6];
+    @apply bg-inherit;
+    @apply mx-0 my-2 px-[10px] py-0;
+    @apply transition-all duration-300 ease-out;
+
+    @apply hover:text-white;
+  }
+
+  & :global(.Dropdown-option.is-selected) {
+    @apply bg-inherit;
+    @apply text-primary;
+    @apply border-l-[3px] border-solid border-l-primary;
+  }
+}

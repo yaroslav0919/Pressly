@@ -1,0 +1,72 @@
+.root {
+  @apply my-2;
+}
+
+.labelWrapper {
+  @apply pt-4;
+  @apply flex justify-between;
+}
+
+.label {
+  @apply font-favoritStd text-[14px] leading-1.4 text-white;
+}
+
+.currentLengthText {
+  @apply text-[14px] leading-[1.2] tracking-[0.03em];
+}
+.inputWrapper {
+  @apply relative mt-4;
+}
+
+.input {
+  @apply px-4 py-[14.5px] border border-transparent;
+  @apply rounded-[8px] bg-white/[.08];
+  @apply flex-1 text-[16px] leading-[1.5];
+  @apply block w-full outline-none;
+  @apply hover:border-white;
+  transition: border-color 0.3s;
+}
+
+.input:autofill + .rightIcon,
+.input:autofill:hover + .rightIcon,
+.input:autofill:focus + .rightIcon,
+.input:autofill:active + .rightIcon {
+  path {
+    @apply stroke-black;
+  }
+}
+
+.filledInput {
+  @apply border-FAFAFA/20;
+}
+
+.inputWithLeftIcon {
+  @apply pl-[48px];
+}
+
+.inputWithRightIcon {
+  @apply pr-[48px];
+}
+
+.error {
+  .input {
+    @apply border-error;
+  }
+
+  .label,
+  .currentLengthText {
+    @apply text-error;
+  }
+}
+
+.rightIcon {
+  @apply absolute;
+  @apply top-0 right-4 h-full;
+  @apply flex items-center justify-center;
+}
+
+.leftIcon {
+  @apply absolute;
+  @apply top-0 left-4 h-full;
+  @apply flex items-center justify-center;
+}

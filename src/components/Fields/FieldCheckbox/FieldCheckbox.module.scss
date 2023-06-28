@@ -1,0 +1,27 @@
+.root {
+}
+
+.checkmark {
+  @apply mr-2 h-[19px] w-[19px];
+  @apply rounded-[2px] border-2 border-white/30;
+  @apply inline-block;
+  transition: background 0.2s, box-shadow 0.2s;
+}
+
+.label {
+  @apply text-[16px] font-medium leading-[1.1875];
+  @apply hover:cursor-pointer;
+  @apply flex items-center;
+}
+
+.input {
+  @apply hidden;
+}
+
+.input:checked + label .checkmark {
+  @apply bg-primary shadow-[0px_0px_0px_3px_black_inset];
+}
+
+.input:disabled + label {
+  @apply hover:cursor-not-allowed opacity-70;
+}

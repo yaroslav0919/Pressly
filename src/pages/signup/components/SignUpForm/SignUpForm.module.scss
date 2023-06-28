@@ -1,0 +1,32 @@
+.root {
+  @apply w-[400px];
+}
+
+.fieldsWrapper {
+  @apply flex flex-col gap-y-[7px];
+}
+
+.buttonsWrapper {
+  @apply mt-[26px] flex flex-col gap-y-4;
+}
+
+.submitButton {
+  @apply my-0;
+}
+
+.googleButton {
+  @apply my-0 h-[72px];
+
+  &::before {
+    background: rgba(255, 255, 255, 0.1);
+  }
+}
+
+.redirectToLogin {
+  @apply mt-6 text-center;
+  @apply text-[20px] font-medium leading-1.2;
+}
+
+.link {
+  @apply underline;
+}

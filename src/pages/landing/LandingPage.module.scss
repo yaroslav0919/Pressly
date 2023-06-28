@@ -1,0 +1,14 @@
+
+.textGradient {
+  /* Headings/Epic 3 */
+  /* or 77px */
+  @apply font-drukWide text-5xl;
+  background: linear-gradient(94.99deg, #ffffff 20%, #C1DEC4 34.21%, #57E286 103.86%);
+  /* old color: linear-gradient(95.16deg, #C0DDC3 10%, #45FEC4 24.17%, #1056DF 70.87%); */
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  //background: linear-gradient(45deg, #f3ec78, #af4261, #7882f5, #f5b799);
+  background-size: 200% 200%;
+  text-fill-color: transparent;
+}

@@ -1,0 +1,37 @@
+.modalOverlay {
+  @apply flex flex-row items-center justify-center;
+  @apply fixed inset-0 h-[100vh] bg-black/[.6];
+  @apply z-50;
+}
+
+.modal {
+  @apply flex flex-row items-center justify-center;
+  @apply mx-auto h-[339px] w-[553px] bg-343434;
+  @apply rounded-lg;
+  @apply z-50  shadow-lg;
+}
+
+.deleteIconRoot {
+  @apply h-[16px] w-[16px];
+}
+.deleteIconWrapper {
+  @apply absolute top-0 right-0 mr-[30px] mt-[30px] h-fit w-fit;
+  @apply hover:cursor-pointer;
+  @apply active:opacity-80;
+}
+
+.modalContent {
+  @apply px-[75px] py-[37px];
+}
+
+.title {
+  @apply text-center font-drukWide text-[26px] leading-[1.2] text-white;
+  @apply mb-[6px];
+}
+.description {
+  @apply flex flex-col items-center justify-center text-center;
+}
+
+.modalBtn {
+  @apply mt-10 h-[78px] w-fit max-w-[257px];
+}

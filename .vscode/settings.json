@@ -1,0 +1,12 @@
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true,
+    "source.organizeImports": false
+  },
+  "cSpell.words": [
+    "AWSS",
+    "mailchimp",
+    "sendgrid",
+    "typeorm"
+  ]
+}

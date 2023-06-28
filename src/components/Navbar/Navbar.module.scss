@@ -1,0 +1,7 @@
+.transparentBgr {
+  @apply bg-transparent;
+}
+
+.layoutWithRightContent {
+    @apply flex flex-row justify-between items-center;
+}

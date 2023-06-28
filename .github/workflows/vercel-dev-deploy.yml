@@ -1,0 +1,55 @@
+name: Vercel Dev Deployment
+env:
+  NEXT_PUBLIC_LOGO: ${{secrets.NEXT_PUBLIC_LOGO}}
+  DATABASE_HOST: ${{ secrets.DATABASE_HOST }}
+  DATABASE_PORT: ${{ secrets.DATABASE_PORT }}
+  DATABASE_USERNAME: ${{ secrets.DATABASE_USERNAME }}
+  DATABASE_PASSWORD: ${{ secrets.DATABASE_PASSWORD }}
+  DATABASE_NAME: ${{ secrets.DATABASE_NAME }}
+
+on:
+  # push:
+  #   branches-ignore:
+  #     - production
+  workflow_dispatch:
+
+jobs:
+  generate-and-run-migration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Generate migration
+        run: |
+          timestamp=$(date +"%s")
+          migration_name="Migration_$timestamp" 
+          if npm run migration:generate --name=$migration_name; then
+            echo "Migration generated"
+          else
+            echo "No migration to generate"
+          fi
+
+      - name: Run migration
+        if: ${{ steps.generate-migration.outcome == 'success' }}
+        run: yarn migration:run
+
+  deploy-to-vercel:
+    runs-on: ubuntu-latest
+    needs: [generate-and-run-migration]
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=preview --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: vercel build --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --token=${{ secrets.VERCEL_TOKEN }}

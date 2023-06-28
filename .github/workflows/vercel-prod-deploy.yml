@@ -1,0 +1,60 @@
+name: Vercel Production Deployment
+env:
+  ENVIRONMENT: production
+  PRODUCTION_DATABASE_HOST: ${{ secrets.PRODUCTION_DATABASE_HOST }}
+  PRODUCTION_DATABASE_PORT: ${{ secrets.PRODUCTION_DATABASE_PORT }}
+  PRODUCTION_DATABASE_USERNAME: ${{ secrets.PRODUCTION_DATABASE_USERNAME }}
+  PRODUCTION_DATABASE_PASSWORD: ${{ secrets.PRODUCTION_DATABASE_PASSWORD }}
+  PRODUCTION_DATABASE_NAME: ${{ secrets.PRODUCTION_DATABASE_NAME }}
+
+on:
+  push:
+    branches:
+      - production
+  workflow_dispatch:
+
+jobs:
+  generate-and-run-migration:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: yarn install
+
+      - name: Generate migration
+        run: |
+          timestamp=$(date +"%s")
+          migration_name="Migration_$timestamp" 
+          if npm run migration:generate --name=$migration_name; then
+            echo "Migration generated"
+            echo "result=success" >> $GITHUB_ENV
+          else
+            echo "No migration to generate"
+            echo "result=failure" >> $GITHUB_ENV
+          fi
+        id: generate-migration
+
+      - name: Run migration
+        if: ${{ env.result == 'success' }}
+        run: |
+          echo "Migration run"
+          yarn migration:run
+
+  deploy-to-production-vercel:
+    runs-on: ubuntu-latest
+    needs: [generate-and-run-migration]
+    env:
+      VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+      VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install Vercel CLI
+        run: npm install --global vercel@latest
+      - name: Pull Vercel Environment Information
+        run: vercel pull --yes --environment=production --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Build Project Artifacts
+        run: vercel build --prod --token=${{ secrets.VERCEL_TOKEN }}
+      - name: Deploy Project Artifacts to Vercel
+        run: vercel deploy --prebuilt --prod --token=${{ secrets.VERCEL_TOKEN }}

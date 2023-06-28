@@ -1,0 +1,12 @@
+version: '3'
+services:
+  db:
+    image: postgres:12
+    environment:
+      POSTGRES_USER: soundmint
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: pressly_db
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./local_init.sql:/docker-entrypoint-initdb.d/init.sql

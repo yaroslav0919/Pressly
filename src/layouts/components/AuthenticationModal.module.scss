@@ -1,0 +1,11 @@
+.modalWrapper {
+  @apply h-fit;
+}
+
+.switchModalButton {
+  @apply cursor-pointer;
+}
+
+.form, .fullContent {
+  @apply w-full;
+}

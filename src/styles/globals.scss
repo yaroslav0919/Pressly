@@ -1,0 +1,30 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import './fonts.scss';
+
+@layer base {
+  * {
+    @apply font-sans;
+  }
+  body {
+    @apply bg-black text-white overflow-hidden;
+  }
+  header {
+    @apply w-full max-w-[1920px];
+    @apply fixed top-0 left-[50%] translate-x-[-50%];
+    @apply py-3 px-[5%] sm:px-[12.5%];
+    @apply z-40;
+  }
+  main {
+    @apply relative mx-auto max-w-[1920px];
+    @apply z-0;
+  }
+}
+
+@layer components {
+  .topGradient {
+    background: linear-gradient(45deg, #1056df, #45fec4);
+  }
+}

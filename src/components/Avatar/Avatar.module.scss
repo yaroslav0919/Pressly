@@ -1,0 +1,12 @@
+.container {
+  @apply flex flex-row items-center;
+}
+
+.root {
+  @apply rounded-[50%] mr-4;
+  @apply aspect-square;
+}
+
+.userName {
+  @apply text-[16px] font-bold text-black;
+}

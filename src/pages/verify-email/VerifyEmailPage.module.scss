@@ -1,0 +1,25 @@
+.root {
+  @apply fixed top-0 left-0;
+  @apply flex h-screen w-full items-center justify-center;
+}
+
+.contentWrapper {
+  @apply flex flex-col items-center justify-center;
+}
+
+.title {
+  @apply font-drukWide text-[40px] font-medium leading-1.4;
+  @apply mb-10;
+}
+
+.loadingImage {
+  @apply animate-spin;
+}
+
+.loadingText {
+  @apply mt-4;
+}
+
+.error {
+  @apply text-[20px];
+}

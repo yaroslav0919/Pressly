@@ -1,0 +1,32 @@
+.root {
+  @apply h-[calc(100vh-128px)] overflow-auto;
+}
+.rootWithoutHeader {
+  @apply h-[100vh] overflow-auto;
+}
+.saveProgressBtn {
+  @apply h-[78px] w-fit;
+  @apply my-0 mr-0;
+}
+
+.bgCircleOfAccountPagesContainer {
+  @apply fixed -z-1 top-0 left-0 h-screen w-screen opacity-40;
+  @apply overflow-hidden;
+}
+
+.bgCircleOfAccountPages {
+  @apply absolute;
+  @apply top-[-769.02px] right-[-950.75px];
+  @apply h-[1757.76px] w-[1757.76px];
+  @apply rounded-[50%] rotate-45;
+}
+
+.bgCircleOfAccountPages::before {
+  @apply content-[''] absolute inset-0 rounded-[50%] blur-[300px]; 
+  background: linear-gradient(102.97deg, #456EFE 1.34%, #6B10DF 97.6%);
+}
+
+.bgCircleOfAccountPages::after {
+  @apply content-[''] absolute inset-0 rounded-[50%] blur-[300px]; 
+  background: linear-gradient(319.8deg, #45fec4 46.12%, #1056df 78.92%);
+}
